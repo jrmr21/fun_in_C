@@ -26,7 +26,7 @@ Operation	Result	Note
  thank's to: https://wuhrr.wordpress.com/2007/11/09/how-to-print-a-long-integer-using-only-putchar/
 
 
-	 	just display int, char and string 
+	 	just display int (#d), char(#c) and string(#s) 
 */
 
 static char* out=NULL;		//	future surprise ^.^
@@ -36,6 +36,7 @@ extern void display(void* string, ...);		// my little printf(work in progress..)
 
 static void putInt(int string);		//	putchar for int
 static int get_sizeDisplay(char* string);	//get size string
+static void addBuffer(char input);
 
 
 #endif

@@ -1,5 +1,9 @@
 #include "display.h"
 
+static void addBuffer(char input)
+{
+	*out++ = input;
+}
 
 extern void displayTest()
 {
@@ -12,11 +16,12 @@ extern void displayTest()
 extern void display(void* s, ...)
 {
 	char* string = s;
+	out = NULL;
 	va_list arg; // create you arg list
 	va_start( arg, s); // init to read past string (despues senor)
 	
 	int argNumber = get_sizeDisplay(string);
-	//printf("vous avez entre : %s \n",string);
+	
 
 	for(int i=0; i < argNumber; i++)	//	checking all arg
 	{	
@@ -25,15 +30,29 @@ extern void display(void* s, ...)
 			switch(string[i+1])	//	if it's true MAGICAL RUN
 			{
 				case 'c':		//	for char
-					i = i+1;		//	move ++ in *s
+					i++;		//	move ++ in *s
 					putchar( (char) (va_arg(arg, int)) ); 	//putchar
-					break;
+				
+		//			addBuffer( (char) (va_arg(arg, int)) );
+				break;
 				case 'd':			//	if it's int
 					i++;			//	move ++ in buffer (*s)
 					int temp = 0;
 					temp = va_arg(arg, void*);  // get int value
-
 					putInt(temp);		//	put int value
+					break;
+				case 's':
+					i++;
+					char* tempStr = NULL;		//	temp buffer to string
+					tempStr = va_arg(arg, void*);  // get string value
+					
+					int sizeStr = 0;	// prepare size string
+					sizeStr = get_sizeDisplay( tempStr ); // get size string
+					
+					for(int i=0; i<sizeStr; i++)	// display string
+					{
+						putchar( tempStr[i]);
+					}	
 					break;
 				default:
 					break;
@@ -43,10 +62,15 @@ extern void display(void* s, ...)
 		else
 		{
 			putchar(string[i]);	//	just putchar for all buffer (exept #value)
+			//	addBuffer( string[i] );
 		}
 	}
 
-	putchar('\n');		//	prout...
+	//putchar('\n');		//	prout...
+	
+
+	//puts( out);
+	//putchar('\n');
 }
 
 
@@ -63,6 +87,7 @@ void putInt(int string)		//	display PUTIIIN VIVA RUSSIA LOL (display int)
 	{
 	      string *= -1;
 	      putchar('-');		//	but display negative value :)
+	      //addBuffer( '-' );
 	}
 
 	int i=1;			//	prepare count
@@ -80,16 +105,20 @@ void putInt(int string)		//	display PUTIIIN VIVA RUSSIA LOL (display int)
 		{
 			i /= 10;
 			putchar((int)(string/i)%10 + '0');
-				
+			
+			//addBuffer( ((int)(string/i)%10 + '0') );	
 		}
 	}
 	else		//	if it's a little size
 	{
-		i *= 10;
+		i *= 10; 		//	maths error to display an int with 1 or 2 size
 		for(int b=-1; b < (size); b++)
 		{
-  	              i /= 10;
-                      putchar((int)(string/i)%10 + '0');							                }
+  	                i /= 10;
+                	putchar((int)(string/i)%10 + '0');
+
+			//addBuffer( ((int)(string/i)%10 + '0') );
+		}
 	}
 
 }
