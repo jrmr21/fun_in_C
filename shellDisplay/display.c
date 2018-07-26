@@ -71,16 +71,16 @@ void putInt(int string)		//	display PUTIIIN VIVA RUSSIA LOL (display int)
         {
   	      size++;
         }
-	if(size > 2)	//	if it's a big size
+	
+	if(size > 3)	//	if it's a big size
 	{
-
 		for(int b=0; b<size; b++)
 		{
 			i /= 10;
 			putchar((int)(string/i)%10 + '0');	
 		}
 	}
-	else if(size > 1)	//	if it's a midle size
+	else if(size == 2)	//	if it's a midle size
 	{
 		putchar((int)(string/10)%10 + '0');
 		putchar((int)(string)%10 + '0');
