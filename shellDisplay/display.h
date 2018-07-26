@@ -18,10 +18,10 @@
 Operation	Result	Note
 123 % 10	3	This gives the third/last digit
 123 / 10	12	The gives the remaining digits
-12 % 10	2	This gives the second digit
-12 / 10	1	This gives the remaining digits
-1 % 10	1	This gives the first digit
-1 / 10	0	This is when we stop
+12 % 10		2	This gives the second digit
+12 / 10		1	This gives the remaining digits
+1 % 10		1	This gives the first digit
+1 / 10		0	This is when we stop
 
  thank's to: https://wuhrr.wordpress.com/2007/11/09/how-to-print-a-long-integer-using-only-putchar/
 
@@ -34,6 +34,8 @@ extern void displayTest();
 extern void display(void* string, ...);		// my little printf(work in progress..)
 
 
+static int get_sizeInt(int entre,int* i);	//	size int (1, 10, 100, 1000...)
+static void get_sizeDecimal(float entre,int *i);	//help to convert decimal to int
 static void putInt(int string);		//	putchar for int
 static int get_sizeDisplay(char* string);	//get size string
 static void addBuffer(char input);

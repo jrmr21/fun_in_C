@@ -32,8 +32,6 @@ extern void display(void* s, ...)
 				case 'c':		//	for char
 					i++;		//	move ++ in *s
 					putchar( (char) (va_arg(arg, int)) ); 	//putchar
-				
-		//			addBuffer( (char) (va_arg(arg, int)) );
 				break;
 				case 'd':			//	if it's int
 					i++;			//	move ++ in buffer (*s)
@@ -41,7 +39,24 @@ extern void display(void* s, ...)
 					temp = va_arg(arg, void*);  // get int value
 					putInt(temp);		//	put int value
 					break;
-				case 's':
+				case 'f':			//	float print
+					i++;
+					float tempF = 0;	//	tempo float
+					tempF = va_arg(arg, double);	// get float user
+					putInt( tempF);		//	display int part of float
+					putchar('.');		//	show .
+					
+					if(tempF < 0) tempF *= -1;	// convert positive value for easy maths progress...
+					tempF = tempF - ((int)tempF);	//	get just float value ex: 12.354 =>> 0.354
+					int i = 1;			//	init i size
+					get_sizeDecimal(tempF, &i);	// get i size (for last example i== 100)
+
+					i *=10;		//	add *10 to resolve bug (100 is bad, good size is 1000 for last example)
+				
+					if(tempF < 0) tempF *= -1;	//	if decimal is - convert to +
+					putInt((int)(tempF * i)); 	//	print decimal after .
+					break;
+				case 's':				//	string print
 					i++;
 					char* tempStr = NULL;		//	temp buffer to string
 					tempStr = va_arg(arg, void*);  // get string value
@@ -52,7 +67,8 @@ extern void display(void* s, ...)
 					for(int i=0; i<sizeStr; i++)	// display string
 					{
 						putchar( tempStr[i]);
-					}	
+					}
+
 					break;
 				default:
 					break;
@@ -62,15 +78,8 @@ extern void display(void* s, ...)
 		else
 		{
 			putchar(string[i]);	//	just putchar for all buffer (exept #value)
-			//	addBuffer( string[i] );
 		}
 	}
-
-	//putchar('\n');		//	prout...
-	
-
-	//puts( out);
-	//putchar('\n');
 }
 
 
@@ -81,7 +90,26 @@ static int get_sizeDisplay(char* string)	//	get size buffer
 	return i;
 }
 
-void putInt(int string)		//	display PUTIIIN VIVA RUSSIA LOL (display int)
+static void get_sizeDecimal(float entre, int* i)
+{
+	float tempo = entre;
+	for(*i; (entre - (int)tempo) > 0; *i *=10)
+	{
+		tempo = entre* *i;
+	}
+
+}
+static int get_sizeInt(int entre, int* i)
+{
+	int size =0;
+	for(*i; entre- *i > 10; *i *= 10)       //      read size
+        {
+	        size++;
+        }
+	return size;
+}
+
+static void putInt(int string)		//	display PUTIIIN VIVA RUSSIA LOL (display int)
 {
 	if(string < 0)		//	reverse negative value to read more easy
 	{
@@ -93,20 +121,14 @@ void putInt(int string)		//	display PUTIIIN VIVA RUSSIA LOL (display int)
 	int i=1;			//	prepare count
         int size = 0;		//	init size int (1, 10, 100 ect..)
 	
-	for(i=1; string-i > 10; i = i*10)	//	read size
-        {
-  	      size++;
-        }
+	size = get_sizeInt(string, &i);
 	
 	if(size > 2)	//	if it's a big size
 	{
-		
 		for(int b=0; b < (size); b++)
 		{
 			i /= 10;
-			putchar((int)(string/i)%10 + '0');
-			
-			//addBuffer( ((int)(string/i)%10 + '0') );	
+			putchar((int)(string/i)%10 + '0');	
 		}
 	}
 	else		//	if it's a little size
@@ -116,11 +138,7 @@ void putInt(int string)		//	display PUTIIIN VIVA RUSSIA LOL (display int)
 		{
   	                i /= 10;
                 	putchar((int)(string/i)%10 + '0');
-
-			//addBuffer( ((int)(string/i)%10 + '0') );
 		}
 	}
 
 }
-
-
