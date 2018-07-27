@@ -1,7 +1,11 @@
 //*******************	JRMR PUTCHAR LOL **************************
 
-my printf to display int, float, string and char
+my printf to display int, float, string, bool and char
 
+/!\ bool is my re-definition so is not compatible with official library /!\
+
+// for bool the declaration bool var...
+//  true == 1, false == 0 (bool is an int)
 
 small kiss
 
