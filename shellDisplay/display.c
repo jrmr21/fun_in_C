@@ -70,6 +70,19 @@ extern void display(void* s, ...)
 					}
 
 					break;
+				case 'b':
+					i++;
+					int tempoB = va_arg(arg,int);
+					
+					if( tempoB == 1 )
+					{
+						puts("true");
+					}
+					else
+					{
+						puts("false");
+					}
+					break;
 				default:
 					break;
 			}

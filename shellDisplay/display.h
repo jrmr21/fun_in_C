@@ -28,6 +28,10 @@ Operation	Result	Note
 
 	 	just display int (#d), char(#c) and string(#s) 
 */
+#define bool int 	//	my boolean define /!\ no compatible official library
+#define true 1
+#define false 0
+
 
 static char* out=NULL;		//	future surprise ^.^
 extern void displayTest();
