@@ -35,8 +35,7 @@ extern void display(void* s, ...)
 				break;
 				case 'd':			//	if it's int
 					i++;			//	move ++ in buffer (*s)
-					int temp = 0;
-					temp = va_arg(arg, void*);  // get int value
+					int temp =  va_arg(arg, int);  // get int value
 					putInt(temp);		//	put int value
 					break;
 				case 'f':			//	float print
@@ -68,6 +67,7 @@ extern void display(void* s, ...)
 					{
 						putchar( tempStr[i]);
 					}
+														// corriger le 's' du #s qui traine	
 
 					break;
 				case 'b':
