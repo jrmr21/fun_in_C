@@ -1,6 +1,6 @@
 #include "ft_header.h"
 
-int		ft_putchar(char c);
+void		ft_putchar(char c);
 
 void	ft_putnbr(int nb)
 {

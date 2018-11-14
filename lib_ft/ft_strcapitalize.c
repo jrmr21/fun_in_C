@@ -17,10 +17,10 @@ char	*ft_strcapitalize(char *str)
 			if (maj)
 			{
 				maj = 0;
-				str[i] = ft_charupcase(str[i]);
+				str[i] = ft_strupcase(str[i]);
 			}
 			else
-				str[i] = ft_charlowcase(str[i]);
+				str[i] = ft_strlowcase(str[i]);
 		}
 		else if (str[i] < 48 || str[i] > 57)
 			maj = 1;
