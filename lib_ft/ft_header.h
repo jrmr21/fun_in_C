@@ -54,7 +54,10 @@ int		ft_str_is_printable(char *str);
 char	*ft_strcat(char *dest, char *src);
 //****  ft_strncat.c                             **  add to table char* a new char in size nd
 char	*ft_strncat(char *dest, char *src, int nb);
-//****
+//****                                           **  calcul moyenne
+void    ft_average(void* input);
+//****                                            **    ecart-type
+// go to https://fr.khanacademy.org/math/probability/data-distributions-a1/summarizing-spread-distributions/a/calculating-standard-deviation-step-by-step
+void    ft_standard_deviation(void* input);
 
-//****
 #endif
