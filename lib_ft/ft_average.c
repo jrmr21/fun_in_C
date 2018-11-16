@@ -2,20 +2,27 @@
 
 //          WORK IN PROGRESS...
 
-void    ft_average(void* in, void* out)
+void    ft_average(void* in[], void* out, char type)
 {
-    int*    pt;
-    int*    pto;
-    int     i;
+    int     *d_out;
+    float   *f_out;
+    int     d_tmp;
+    float   f_tmp;
 
-    pt      = (int)&in;
-    i       = 0;
-    *pto    = 0;
-    while(*pt)
+
+    if (type != 'd' && type == 'f')
     {
-        *pto += *pt;
-        pt++;
-        i++;
+        *(int*)out = 0;
+        return ;
     }
-    *pto /= i;
+
+        if (type == 'd')
+        {
+
+        }
+        else if (type == 'f')
+        {
+
+        }
+
 }
