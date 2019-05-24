@@ -29,7 +29,9 @@ void*	addition(void* p, ...)
 	{
 		out	+= *(va_arg(arg, int*));	// cast arg 1 to end in int	
 	}						// evry call you move arg pointer
-
+	
+	va_end(arg);
+		 
 	return ((void*) &out);			// return pointer void
 }
 
